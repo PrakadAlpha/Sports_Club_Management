@@ -1,6 +1,5 @@
 package com.sport2.controller;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,11 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.sport2.bean.Batch_Reg;
 import com.sport2.bean.Ground_Reg;
 import com.sport2.bean.Users;
+import com.sport2.service.MainServiceI;
 import com.sport2.service.UserServiceI;
 
 @Controller
@@ -27,6 +25,9 @@ public class UserController {
 
 	@Autowired
 	UserServiceI service;
+	
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping("/usr_register")
 	public String Usr_reg(Model model){
@@ -36,13 +37,32 @@ public class UserController {
 
 	@RequestMapping("/usr_batch")
 	public String Usr_Batch(Model model){
+		
 		model.addAttribute("batch",new Batch_Reg());
-		return "batch_reg";
+				
+		if(check_user()) {
+			
+			return "batch_reg";
+			
+		}
+		model.addAttribute("err", "Please Login..!");
+		
+		return "welcome"; 
 	}
 	@RequestMapping("/usr_ground")
 	public String Usr_Ground(Model model){
 		model.addAttribute("ground", new Ground_Reg());
-		return "ground_reg";
+		
+		if(check_user()) {
+			
+	return "ground_reg";
+			
+		}
+		model.addAttribute("err", "Please Login..!");
+		
+		return "welcome"; 
+		
+		
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
@@ -68,73 +88,99 @@ public class UserController {
 		
 		Users reg_user = service.save(user);
 		
-		model.put("id", reg_user.getId());
+		model.put("id", reg_user.getFullname());
 		
 		return "thankyou";
 	}
 
-	@RequestMapping(value = "/ground", method = RequestMethod.POST)
-	public String User_Ground(@Valid @ModelAttribute("ground") Ground_Reg ground,BindingResult result, ModelMap model) throws ParseException{
+	@RequestMapping(value = "/ground_reg", method = RequestMethod.POST)
+	public String User_Ground(@Valid @ModelAttribute("ground") Ground_Reg ground, BindingResult result, ModelMap model, HttpSession session) throws ParseException{
 
 		
 		if(result.hasErrors()){
 			return "ground_reg";
 		}
 		
+		Integer c_user = (Integer) session.getAttribute("userid");
+		
+		System.out.println("In function");
+		System.out.println(ground);
 		
 		Ground_Reg g = new Ground_Reg();
+		Users user = service.getUserById(c_user);
 		
 		g.setEvent(ground.getEvent());
 		g.setDate(ground.getDate());
 		g.setDesc(ground.getDesc());
-
-		System.out.println(g);
-
+		g.setUser(user);
 		
-		Ground_Reg gr = service.save_ground(g);
+		System.out.println(g);		
+				
+		service.save_ground(g);
+	
 		
-		model.put("id", gr.getId());
-		
-		return "thankyou";
+		return "g_thankyou";
 	}
 
 	@RequestMapping(value = "/batch", method = RequestMethod.POST)
-	public String User_Batch(@Valid @ModelAttribute("batch") Batch_Reg batch,BindingResult result, ModelMap model){
+	public String User_Batch(@Valid @ModelAttribute("batch") Batch_Reg batch,BindingResult result, ModelMap model, HttpSession session){
 		
 		
 		if(result.hasErrors()){
 			return "batch_reg";
 		}	
 		
+		Integer c_user = (Integer) session.getAttribute("userid");
+
+		
 		Batch_Reg b = new Batch_Reg();
+		Users user = service.getUserById(c_user);
 		
 		b.setSport_name(batch.getSport_name());
 		b.setSport_time(batch.getSport_time());
 		b.setDesc(batch.getDesc());
-		
-		System.out.println(b);
-		
-		Batch_Reg ba = service.save_batch(b);
-		
-		System.out.println(ba);
-		
-		model.put("id", ba.getId());
-		
-		return "thankyou";
+		b.setUser(user);
+				
+		service.save_batch(b);
+						
+		return "b_thankyou";
 	}
 
 	
-	@RequestMapping("/status/{id}")
-	public String req_status(ModelMap model, @PathVariable Integer id){
+	@RequestMapping("/status")
+	public String req_status(ModelMap model, HttpSession session){
+						
+		Integer c_user = (Integer) session.getAttribute("userid");
 		
-		System.out.println(id);
-				
-		List<Ground_Reg> list = service.req_status(id);
+		List<Ground_Reg> list = service.req_status(c_user);
 
+		System.out.println();
+		
 		model.put("ground", list);
 		
 		return "req_status";
 	}
 	
-	
+	public boolean check_user() {
+		
+		if(session.getAttribute("userid") != null) {
+			
+			Integer c_user = (Integer) session.getAttribute("userid");
+			
+			System.out.println("In function");
+
+			System.out.println(c_user);
+			
+			Users user = service.getUserById(c_user);
+			
+			Integer c_role = user.getRole();
+			
+			if(c_role.equals(MainServiceI.ROLE_USER)) {
+				
+				return true;
+		
+			}		
+		}
+		return false;
+	}
 }

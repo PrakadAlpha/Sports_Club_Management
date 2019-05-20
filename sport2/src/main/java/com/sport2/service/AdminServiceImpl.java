@@ -38,7 +38,8 @@ public class AdminServiceImpl implements AdminServiceI {
 	}
 	
 	@Transactional
-	public Integer reject(Integer id) {
-		return dao.reject(id);
+	public Ground_Reg reject(Ground_Reg gr_app) {
+		return dao.reject(gr_app);
 	}
+
 }

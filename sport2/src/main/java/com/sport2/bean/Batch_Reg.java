@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,16 +30,36 @@ public class Batch_Reg {
 	@Size(min = 10, message = "Enter a full Description..!")
 	private String desc;
 	
+	@OneToOne
+	private Users user;
+	
+	public Users getUser() {
+		return user;
+	}
+	
+	public Integer getUserId() {
+		return user.getId();
+	}
+	
+	public void setUserId(Integer id) {
+		user.setId(id);
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	public Batch_Reg() {
 		super();
 	}
 	
-	public Batch_Reg(Integer id, String sport_name, String sport_time, String desc) {
+	public Batch_Reg(Integer id, String sport_name, String sport_time, String desc, Users user) {
 		super();
 		this.id = id;
 		this.sport_name = sport_name;
 		this.sport_time = sport_time;
 		this.desc = desc;
+		this.user = user;
 	}
 	
 	public Integer getId() {
@@ -72,7 +93,7 @@ public class Batch_Reg {
 	@Override
 	public String toString() {
 		return "Batch_Reg [id=" + id + ", sport_name=" + sport_name + ", sport_time=" + sport_time + ", desc=" + desc
-				+ "]";
+				+  ", userid" + user+ "]";
 	}
 	
 	

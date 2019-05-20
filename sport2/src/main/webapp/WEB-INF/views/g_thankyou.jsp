@@ -5,8 +5,7 @@
 <%@include file="navigation.jsp" %>	
 <div class="main-6">
 	<div class="">
-		<h3 style="text-align: center;">Welcome to Sports Club</h3>
-		<p style="text-align: center;">Hi ${id}, Thank you for registration..</p>
+		<p style="text-align: center;">Thank you, Your Ground Registration Request Is Sent Successfully..!</p>
 	</div>
 </div>
 <%@include file="footer.jsp" %>

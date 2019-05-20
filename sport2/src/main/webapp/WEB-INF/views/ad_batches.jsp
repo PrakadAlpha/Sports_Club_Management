@@ -20,7 +20,7 @@
 			<tbody>
 			<c:forEach items="${batch}" var="b">
 					<tr>
-						<td>${b.id}</td>
+						<td>${b.user.id}</td>
 						<td>${b.sport_name}</td>
 						<td>${b.sport_time}</td>
 						<td>${b.desc}</td>

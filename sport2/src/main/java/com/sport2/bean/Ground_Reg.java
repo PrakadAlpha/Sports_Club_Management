@@ -8,8 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.security.core.userdetails.User;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="GROUNDS")
@@ -19,13 +24,19 @@ public class Ground_Reg {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull(message="Cannot be Null..!")
 	private String event;
 	
+	@FutureOrPresent(message="Enter valid date..!")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	@NotNull(message="Cannot be Null..!")
 	private Date date;
 	
+	@NotNull(message="Cannot be Null..!")
 	private String desc;
 	
-	private String status = "PENDING";
+	private String status = "";
 	
 	@OneToOne
 	private Users user;
@@ -50,6 +61,14 @@ public class Ground_Reg {
 	
 	public Users getUser() {
 		return user;
+	}
+	
+	public Integer getUserId() {
+		return user.getId();
+	}
+	
+	public void setUserId(Integer id) {
+		user.setId(id);
 	}
 
 	public void setUser(Users user) {
@@ -92,7 +111,7 @@ public class Ground_Reg {
 	@Override
 	public String toString() {
 		return "Ground_Reg [id=" + id + ", event=" + event + ", date=" + date + ", desc=" + desc + ", status=" + status
-				+ "]";
+				+ user+ "..";
 	}
 
 

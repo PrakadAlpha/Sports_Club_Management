@@ -6,10 +6,11 @@
 	<title>Sport Club Management</title>
 	<head>
 		<link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 		<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">	
 	</head>
 	<c:url var="url_bg" value="resources/img/login.jpg"></c:url>
-<body background="${url_bg}">
+<body>
 	<div class="wrapper">			
 		<div class="header">
 			<header>

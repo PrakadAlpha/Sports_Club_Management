@@ -23,7 +23,12 @@
 						<td>${g.event}</td>
 						<td>${g.date}</td>
 						<td>${g.desc}</td>
-						<td>${g.status}</td>
+						<c:if test="${g.status !=  NULL}">
+							<td>${g.status}</td>
+						</c:if>
+						<c:if test="${g.status == NULL || g.status == '' }">
+							<td>PENDING</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</tbody>

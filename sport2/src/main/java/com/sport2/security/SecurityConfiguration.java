@@ -14,14 +14,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("root").password("root")
-				.roles("USER", "ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("admin")
+				.roles("ADMIN");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/welcome").permitAll()
-				.antMatchers("/", "/*admin*/**").access("hasRole('ADMIN')").
-				antMatchers("/", "/*user*/**").access("hasRole('USER')");
+				.antMatchers("/", "/ad_/**").access("hasRole('ADMIN')").
+				antMatchers("/", "/usr_/**").access("hasRole('USER')");
 	}
 }

@@ -8,7 +8,7 @@
 	<nav role="navigation" class="navbar">
 		<div class="navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><div><a href="home" class="navbar-brand">ADMIN PORTAL</a></div></li>	
+				<li><div><a href="home" class="navbar-brand">LOGIN</a></div></li>	
 			</ul>
 		</div>
 	</nav>
@@ -34,7 +34,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><div><a href="usr_home" class="navbar-brand">HOME</a></div></li>
 				<li><div><a href="logout" class="navbar-brand">ADMIN PORTAL</a></div></li>	
-				<li><div><a href="status/${sessionScope.userid}" class="navbar-brand">REQUEST STATUS</a></div></li>	
+				<li><div><a href="status" class="navbar-brand">REQUEST STATUS</a></div></li>	
 				<li><div><a href="logout" class="navbar-brand" id="logout">LOGOUT</a></div></li>
 			</ul>
 		</div>

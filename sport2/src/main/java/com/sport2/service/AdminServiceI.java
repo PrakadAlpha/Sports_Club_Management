@@ -17,5 +17,6 @@ public interface AdminServiceI {
 	
 	public Ground_Reg update_status(Ground_Reg gr_app);
 
-	public Integer reject(Integer id);
+	public Ground_Reg reject(Ground_Reg gr_app);
+
 }

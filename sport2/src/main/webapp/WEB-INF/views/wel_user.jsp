@@ -18,5 +18,6 @@
 			<p>Click here to register for the Grounds..!</p>
 			<a href="usr_ground"><button class="btn btn-success button">Ground Register</button></a>
 		</div>
+		
 </div>
 <%@include file="footer.jsp" %>

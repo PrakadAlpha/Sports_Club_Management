@@ -1,12 +1,24 @@
+*{
+	font-family: 'Roboto Slab', serif;	
+}
+
 .wrapper{
 	display: grid;
-	grid-template-rows: 90px 50px 400px 90px;
+	grid-template-rows: 1fr 1 fr 3fr 1fr;
 	max-width:1200px;
 	margin: 0 auto;
+	height: 100vh;
 }
 
 .error{
  color: red;	
+}
+
+.list1{
+
+	line-height: 4;
+    margin: 50px 50px;
+    list-style: none;
 }
 
 h1{
@@ -16,7 +28,6 @@ h1{
 }
 
 header{
-	background: #435892;
 	padding: 10px;
 }
 
@@ -39,7 +50,6 @@ header{
 footer{
 	text-align: center;
 	color:teal;
-	background: #eee;
 	padding:30px;	
 }
 
@@ -51,26 +61,40 @@ footer{
 
 .main{
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 2fr 1fr;	
 	grid-gap: 5px;
 	padding: 5px 0 5px 0;
 	}
 	
 .main{
-	grid-row:3;
+	grid-row:2;
 	grid-column:1/4;	
 }
 
 .login{
-	grid-row:1/2;
+	grid-row:1;
 	grid-column:1;
 	padding-left:30px;
+	align-self: center;
+	justify-self: center;
+	
+}
+
+.row{
+	line-height: 3;
 }
 .news{
 	grid-row:1;
-	grid-column:2;	
-	
+	grid-column:2;
+}
+
+.login .form-control{
+	width: unset;
+}
+
+
+
+.news h2{
+	margin-top: 100px;
 }
 
 .ground{

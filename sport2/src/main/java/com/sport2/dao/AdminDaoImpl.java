@@ -42,6 +42,7 @@ public class AdminDaoImpl implements AdminDaoI {
 	public Ground_Reg update_status(Ground_Reg gr_app) {
 
 		System.out.println(gr_app);
+		
 		em.createNativeQuery("UPDATE GROUNDS SET `status`=? WHERE `id`=?")
 	      .setParameter(1,gr_app.getStatus())
 	      .setParameter(2,gr_app.getId())
@@ -49,15 +50,14 @@ public class AdminDaoImpl implements AdminDaoI {
 		return gr_app;
 	}
 
-	public Integer reject(Integer id) {
-	
-		System.out.println(id);
+	public Ground_Reg reject(Ground_Reg gr_app) {
+			
 		
-		Ground_Reg ground = em.find(Ground_Reg.class, id);
+		em.createNativeQuery("UPDATE GROUNDS SET `status`=? WHERE `id`=?")
+	      .setParameter(1,gr_app.getStatus())
+	      .setParameter(2,gr_app.getId())
+	      .executeUpdate();
 		
-		em.remove(ground);
-		
-		return id;
+		return gr_app;
 	}
-
 }

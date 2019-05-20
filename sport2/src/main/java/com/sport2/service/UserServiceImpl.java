@@ -3,7 +3,6 @@ package com.sport2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +39,11 @@ public class UserServiceImpl implements UserServiceI {
 	public List<Ground_Reg> req_status(Integer id) {
 	
 		return dao.req_status(id);
+	}
+
+	public Users getUserById(Integer c_user) {
+		
+		return dao.getUserById(c_user);
 	}
 
 }
