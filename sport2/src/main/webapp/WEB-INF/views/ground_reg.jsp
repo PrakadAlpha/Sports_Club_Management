@@ -6,7 +6,7 @@
 <%@include file="header.jsp" %>
 <%@include file="navigation.jsp" %>	
 <div class="main-5">
-	<form:form action="ground_reg" method="POST" modelAttribute="ground">
+	<form:form action="ground_reg" method="POST" modelAttribute="ground" class="ground_form">
 		<div class="row">
 			<div class="form-group col-md-12">
 				<form:label class="col-md-3 control-lable" path="event">Event</form:label>

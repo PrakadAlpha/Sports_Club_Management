@@ -1,5 +1,6 @@
 package com.sport2.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -60,6 +61,15 @@ public class UserDaoImpl implements UserDaoI {
 	public Users getUserById(Integer c_user) {
 		
 		return em.find(Users.class, c_user);
+
+	}
+
+	public Object findByDate(Date value) {
+
+		Query sql = em.createQuery("select g from Ground_Reg g where date = :value");
+		sql.setParameter("value", value);
+		
+		return sql;
 
 	}
 

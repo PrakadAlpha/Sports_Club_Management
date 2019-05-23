@@ -2,6 +2,7 @@ package com.sport2.bean;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,8 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sport2.annotation.Unique;
 
 
 @Entity
@@ -31,6 +34,7 @@ public class Ground_Reg {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@NotNull(message="Cannot be Null..!")
+	@Unique(message="Please select different date..!")
 	private Date date;
 	
 	@NotNull(message="Cannot be Null..!")

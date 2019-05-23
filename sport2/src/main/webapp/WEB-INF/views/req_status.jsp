@@ -8,7 +8,7 @@
 <div class="req_status">
 <h3>Request List</h3>
 			<hr>
-	<table class="table table-striped">	
+	<table class="table">	
 			<thead>
 				<tr>
 					<th>Event</th>

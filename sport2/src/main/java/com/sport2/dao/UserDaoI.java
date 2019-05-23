@@ -1,5 +1,6 @@
 package com.sport2.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.sport2.bean.Batch_Reg;
@@ -15,6 +16,7 @@ public interface UserDaoI {
 	public Ground_Reg save_ground(Ground_Reg ground);
 	public List<Ground_Reg> req_status(Integer id);
 	public Users getUserById(Integer c_user);
+	public Object findByDate(Date value);
 	
 	
 }

@@ -62,17 +62,19 @@
 				<div class="col-md-3" class="form-control input-sm">
 						<form:input type="password" class="form-control input-sm" name="password" path="password"></form:input>
 						<form:errors class="error" path="password"/>
-				</div>
+			</div>
 			</div>
 		</div><br>
 		
-			<div class="row buttons">
+			<div class="row r_buttons">
+			<div class="form-group">
 				<input type="submit" value="REGISTER" class="btn btn-primary btn-sm">
 				<button type="reset" class="btn btn-sm btn-light">CLEAR</button>
+			</div>
 			</div>
 			
 			
 	</form:form><br>
 	</div>
-</div>																																																																																																																																																																																																																																																																		
+</div>				
 <%@include file="footer.jsp" %>

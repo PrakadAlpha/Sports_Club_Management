@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %> 
 <%@include file="header.jsp" %>
+<div style="height: 0;"></div>
 <div class="main">
 			<div class="login" >
 				<h2>User Login</h2><br>
